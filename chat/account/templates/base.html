@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  </head>
+  <body>
+    <div id="header">
+      {% if request.user.is_authenticated %}
+        <a href=" {% url 'dashboard' %} ">Dashboard</a>
+        <a href=" {% url 'perfil' %} ">Perfil</a>
+        <a href=" {% url "edit" %} ">Editar Dados</a>
+        <a href=" {% url "password_change" %} ">Trocar de Senha</a>
+        <a class="log" href="{% url "logout" %}">Logout</a>
+      {% endif %}
+    </div>
+    <div id="content">{% block content %} {% endblock %}</div>
+  </body>
+</html>
